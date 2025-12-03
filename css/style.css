@@ -809,12 +809,17 @@ input.mail_text::placeholder {
 
 
 .video-container {
+  /* 가운데 정렬 + 위아래 여백 */
+  margin: 24px auto;
+
+  /* 반응형 + 너무 커지지 않게 제한 */
+  width: min(100%, 800px);  /* 최대 480px, 그 이상 안 커짐 */
+
+  /* 16:9 비율 유지 */
+  aspect-ratio: 16 / 9;
+
+  /* 오래된 브라우저 대비 */
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 비율 */
-  height: 0;
-  overflow: hidden;
-  max-width: 800px;       /* 최대 너비 (원하면 숫자 조절) */
-  margin: 40px auto;      /* 위아래 여백 + 가운데 정렬 */
 }
 
 .video-container iframe {
