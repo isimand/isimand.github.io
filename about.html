@@ -168,6 +168,28 @@
          });
          
       </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // 현재 파일 이름 (예: index.html, about.html 등)
+          var path = window.location.pathname.split("/").pop();
+          if (!path) path = "index.html";  // 루트로 들어온 경우
+
+          // 두 군데 메뉴 모두 처리: 위쪽 navbar + 아래 커스텀 메뉴
+          var links = document.querySelectorAll(
+            ".menu_main ul li a, .navbar-nav li a"
+          );
+
+          links.forEach(function (link) {
+            var href = link.getAttribute("href");
+            if (href === path) {
+              // <li>에 active 클래스 추가
+              link.parentElement.classList.add("active");
+            } else {
+              link.parentElement.classList.remove("active");
+            }
+          });
+        });
+      </script>
    </body>
 </html>
 
