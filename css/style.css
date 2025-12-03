@@ -780,6 +780,7 @@ input.mail_text::placeholder {
 
 .banner_image {
    flex: 0 0 400px;
+   max-width: 500px;
    text-align: right;
 }
 
