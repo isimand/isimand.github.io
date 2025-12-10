@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>(주) 시만 – TestField</title>
+
+      <!-- 기존 사이트와 동일한 스타일들 -->
+      <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="./css/style.css">
+      <link rel="stylesheet" href="./css/responsive.css">
+      <link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   </head>
+   <body>
+      <!-- header section start -->
+      <div class="header_section">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="logo"><a href="index.html"><img src="images/logo.png" alt="SIMAN"></a></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                  <li class="nav-item"><a class="nav-link" href="software.html">Solutions</a></li>
+                  <li class="nav-item"><a class="nav-link" href="services.html">Resources</a></li>
+                  <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                  <li class="nav-item"><a class="nav-link" href="testfield.html">TestField</a></li>
+               </ul>
+            </div>
+         </nav>
+
+         <div class="costume_header">
+            <div class="container">
+               <div class="menu_main">
+                  <ul>
+                     <li><a href="index.html">Home</a></li>
+                     <li><a href="about.html">About</a></li>
+                     <li><a href="software.html">Solutions</a></li>
+                     <li><a href="services.html">Resources</a></li>
+                     <li><a href="contact.html">Contact Us</a></li>
+                     <li><a href="testfield.html">TestField</a></li>
+                  </ul>
+               </div>
+               <div class="menu_main_1">
+                  <ul>
+                     <li><a href="#">Membership</a></li>
+                     <li><a href="#">Register</a></li>
+                     <li><a href="#"><img src="images/search-icon.png" alt="search"></a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- header section end -->
+
+      <!-- TestField main section -->
+      <div class="layout_padding">
+         <div class="container">
+            <h1 class="work_taital" style="margin-top:40px; margin-bottom:24px;">TestField Dashboard</h1>
+            <p class="software_text">
+               내부 현황 대시보드 페이지입니다. 비밀번호를 입력하면 대시보드를 확인할 수 있습니다.
+            </p>
+
+            <!-- 비밀번호 입력 -->
+            <div id="testfield-login" class="email_text" style="max-width:420px; margin:24px auto;">
+               <div class="form-group">
+                  <input type="password" id="testfield-pw" class="email-bt" placeholder="Password">
+               </div>
+               <div class="send_btn">
+                  <a href="#" id="testfield-submit">ENTER</a>
+               </div>
+               <div id="testfield-error"
+                    style="color:#dc2626; margin-top:8px; min-height:1.2em; font-size:14px;"></div>
+            </div>
+
+            <!-- 대시보드 iframe (복호화 후 URL 주입) src는 처음에는 빈상태-->
+            <div id="testfield-dashboard" style="display:none; margin-top:24px;">
+               <div style="width:100%; height:90vh;">
+                  <iframe
+                     id="testfield-iframe"
+                     src=""   
+                     style="width:100%; height:100%; border:none;"
+                     allowfullscreen
+                  ></iframe>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- footer (간단 버전) -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-5 col-sm-6">
+                  <div class="footer_logo"><img src="images/footer-logo.png" alt="SIMAN"></div>
+                  <p class="dolor_text">© 2024 SIMAN ltd. All rights reserved.</p>
+               </div>
+               <div class="col-lg-3 col-sm-6">
+                  <h4 class="address_text">Adderes</h4>
+                  <p class="dolor_text">10223 경기도 고양시 일산서구 고양대로 283, 한국건설기술연구원, 건설산업혁신센터 1층</p>
+                  <p class="dolor_text">070-7730-0700</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="copyright_section">
+         <div class="copyright_text">
+            Copyright 2019 All Right Reserved By
+            <a href="https://html.design">Free html Templates</a>
+         </div>
+      </div>
+
+      <!-- JS files -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+
+      <!-- 현재 페이지 active 처리 -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var path = window.location.pathname.split("/").pop();
+          if (!path) path = "index.html";
+
+          var links = document.querySelectorAll(".menu_main ul li a, .navbar-nav li a");
+          links.forEach(function (link) {
+            var href = link.getAttribute("href");
+            if (href === path) {
+              link.parentElement.classList.add("active");
+            } else {
+              link.parentElement.classList.remove("active");
+            }
+          });
+        });
+      </script>
+
+      <!-- 🔐 TestField 암호/복호화 로직 -->
+      <script>
+        // 1) 비밀번호 해시 ( PW_HASH 값 )
+        const TESTFIELD_PASSWORD_HASH = "dcf5fcb7c2bade8f84fc7af0658b8a2e1013e11abf28250060c7707682e696cb";
+
+        // 2) 암호화된 URL 데이터 (위 콘솔에서 출력된 값 넣기)
+        const ENC_URL  = "M9NX13jpsfg7Q5aEJL8ntGFhGz/dChpU6f93H3wt/mhasypZ/QTJiEN1T6lDHAd+Is8XMJw4IfMA9VoOhr779V4KBWyxMjK/SgniVoF0iOqSGk0PT8fnwNFay0vGhl1L6FzrUA+EzFYxVOdSIQx5yAq9G2E=";  // CIPHER:
+        const ENC_SALT = "wmpiBg0MKHmBHfXRvvdvGg==";    // SALT:
+        const ENC_IV   = "MjwgdTxGJlDHltoh";      // IV:
+
+        // base64 -> Uint8Array
+        function b64ToBytes(b64) {
+          const binStr = atob(b64);
+          const len = binStr.length;
+          const bytes = new Uint8Array(len);
+          for (let i = 0; i < len; i++) {
+            bytes[i] = binStr.charCodeAt(i);
+          }
+          return bytes;
+        }
+
+        // SHA-256 해시 (비밀번호 검증용)
+        async function sha256(str) {
+          const enc = new TextEncoder();
+          const data = enc.encode(str);
+          const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+          return hashHex;
+        }
+
+        // 비밀번호로 URL 복호화
+        async function decryptUrl(password) {
+          const enc = new TextEncoder();
+          const dec = new TextDecoder();
+
+          const saltBytes   = b64ToBytes(ENC_SALT);
+          const ivBytes     = b64ToBytes(ENC_IV);
+          const cipherBytes = b64ToBytes(ENC_URL);
+
+          // PBKDF2 키 생성
+          const keyMaterial = await crypto.subtle.importKey(
+            "raw",
+            enc.encode(password),
+            "PBKDF2",
+            false,
+            ["deriveKey"]
+          );
+
+          const key = await crypto.subtle.deriveKey(
+            {
+              name: "PBKDF2",
+              salt: saltBytes,
+              iterations: 100000,
+              hash: "SHA-256",
+            },
+            keyMaterial,
+            { name: "AES-GCM", length: 256 },
+            false,
+            ["decrypt"]
+          );
+
+          const plainBuffer = await crypto.subtle.decrypt(
+            { name: "AES-GCM", iv: ivBytes },
+            key,
+            cipherBytes
+          );
+
+          return dec.decode(plainBuffer);  // 여기서 실제 URL 문자열
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          const submitBtn = document.getElementById("testfield-submit");
+          if (!submitBtn) return;
+
+          submitBtn.addEventListener("click", async function (e) {
+            e.preventDefault();
+
+            const pwInput  = document.getElementById("testfield-pw");
+            const errorEl  = document.getElementById("testfield-error");
+            const loginBox = document.getElementById("testfield-login");
+            const dashboard = document.getElementById("testfield-dashboard");
+            const iframe   = document.getElementById("testfield-iframe");
+
+            const pw = (pwInput.value || "").trim();
+            if (!pw) {
+              errorEl.textContent = "비밀번호를 입력하세요.";
+              return;
+            }
+
+            try {
+              // 1단계: 해시로 비밀번호 검증
+              const hashHex = await sha256(pw);
+              if (hashHex !== TESTFIELD_PASSWORD_HASH) {
+                errorEl.textContent = "비밀번호가 틀렸습니다.";
+                return;
+              }
+
+              // 2단계: URL 복호화
+              const url = await decryptUrl(pw);
+
+              // iframe에 src 주입
+              iframe.src = url;
+
+              // UI 전환
+              loginBox.style.display = "none";
+              dashboard.style.display = "block";
+              errorEl.textContent = "";
+            } catch (err) {
+              console.error(err);
+              errorEl.textContent = "오류가 발생했습니다. 다시 시도해주세요.";
+            }
+          });
+        });
+      </script>
+   </body>
+</html>
