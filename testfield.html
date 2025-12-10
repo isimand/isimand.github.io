@@ -12,6 +12,31 @@
       <link rel="stylesheet" href="./css/responsive.css">
       <link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <style>
+         /* 기본 ENTER 버튼 스타일 약간만 보정 (원래 템플릿 위에 덮어쓰기) */
+         .send_btn a#testfield-submit {
+            display: inline-block;
+            padding: 10px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+            opacity: 0.6;               /* 기본은 살짝 흐리게 (비활성 느낌) */
+         }
+
+         /* 비밀번호가 입력되면 JS에서 이 클래스를 달아줌 */
+         .send_btn a#testfield-submit.testfield-active {
+            opacity: 1;
+            background-color: #2563eb;  /* 기존보다 좀 더 진한 파란색 */
+            color: #ffffff;
+         }
+
+         /* 마우스로 눌렀을 때 (클릭/Enter 둘 다) 살짝 눌리는 느낌 */
+         .send_btn a#testfield-submit.testfield-active:active {
+            transform: scale(0.97);
+            filter: brightness(0.9);
+         }
+      </style>
    </head>
    <body>
       <!-- header section start -->
@@ -217,48 +242,75 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-          const submitBtn = document.getElementById("testfield-submit");
-          if (!submitBtn) return;
+         const submitBtn = document.getElementById("testfield-submit");
+         const pwInput   = document.getElementById("testfield-pw");
+         const errorEl   = document.getElementById("testfield-error");
+         const loginBox  = document.getElementById("testfield-login");
+         const dashboard = document.getElementById("testfield-dashboard");
+         const iframe    = document.getElementById("testfield-iframe");
 
-          submitBtn.addEventListener("click", async function (e) {
-            e.preventDefault();
+         if (!submitBtn || !pwInput) return;
 
-            const pwInput  = document.getElementById("testfield-pw");
-            const errorEl  = document.getElementById("testfield-error");
-            const loginBox = document.getElementById("testfield-login");
-            const dashboard = document.getElementById("testfield-dashboard");
-            const iframe   = document.getElementById("testfield-iframe");
+         // 🔵 비밀번호 입력 여부에 따라 버튼 스타일 변경
+         function updateButtonState() {
+            const hasValue = (pwInput.value || "").trim().length > 0;
+            if (hasValue) {
+            submitBtn.classList.add("testfield-active");
+            } else {
+            submitBtn.classList.remove("testfield-active");
+            }
+         }
+
+         // 실제 로그인 처리 함수
+         async function handleLogin(e) {
+            if (e) e.preventDefault();
 
             const pw = (pwInput.value || "").trim();
             if (!pw) {
-              errorEl.textContent = "비밀번호를 입력하세요.";
-              return;
+            errorEl.textContent = "비밀번호를 입력하세요.";
+            return;
             }
 
             try {
-              // 1단계: 해시로 비밀번호 검증
-              const hashHex = await sha256(pw);
-              if (hashHex !== TESTFIELD_PASSWORD_HASH) {
-                errorEl.textContent = "비밀번호가 틀렸습니다.";
-                return;
-              }
-
-              // 2단계: URL 복호화
-              const url = await decryptUrl(pw);
-
-              // iframe에 src 주입
-              iframe.src = url;
-
-              // UI 전환
-              loginBox.style.display = "none";
-              dashboard.style.display = "block";
-              errorEl.textContent = "";
-            } catch (err) {
-              console.error(err);
-              errorEl.textContent = "오류가 발생했습니다. 다시 시도해주세요.";
+            // 1단계: 비밀번호 해시 검증
+            const hashHex = await sha256(pw);
+            if (hashHex !== TESTFIELD_PASSWORD_HASH) {
+               errorEl.textContent = "비밀번호가 틀렸습니다.";
+               return;
             }
-          });
-        });
+
+            // 2단계: URL 복호화
+            const url = await decryptUrl(pw);
+
+            // iframe에 src 주입
+            iframe.src = url;
+
+            // UI 전환
+            loginBox.style.display = "none";
+            dashboard.style.display = "block";
+            errorEl.textContent = "";
+            } catch (err) {
+            console.error(err);
+            errorEl.textContent = "오류가 발생했습니다. 다시 시도해주세요.";
+            }
+         }
+
+         // 마우스로 ENTER 버튼 클릭
+         submitBtn.addEventListener("click", handleLogin);
+
+         // 비밀번호 입력칸에서 Enter 눌렀을 때도 로그인
+         pwInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+            handleLogin(e);
+            }
+         });
+
+         // 입력 내용 바뀔 때마다 버튼 활성화 상태 갱신
+         pwInput.addEventListener("input", updateButtonState);
+
+         // 초기 상태도 한번 반영
+         updateButtonState();
+      });
       </script>
    </body>
 </html>
