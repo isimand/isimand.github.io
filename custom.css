@@ -1,0 +1,252 @@
+/* Local overrides for cloned isiman.co.kr site */
+
+.navbar-nav .nav-item > a,
+.desktop-menu .nav-item > a {
+  white-space: nowrap;
+}
+
+/* ======== SIMAX banner (solutions-micro) - UNUSED, kept for later ======== */
+.simax-banner-unused-placeholder { display: none; }
+
+/* ======== Contact Us page ======== */
+.contact-hero {
+  background: #fafbfc;
+}
+
+.contact-heading {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.contact-heading h2 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: #19154b;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+}
+
+.contact-heading h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: #2b2481;
+  margin: 18px auto 0;
+  border-radius: 2px;
+}
+
+.contact-heading p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.contact-row {
+  margin: 0 -12px;
+}
+
+.contact-map-col,
+.contact-info-col {
+  padding: 12px;
+  display: flex;
+}
+
+.contact-map-wrap {
+  width: 100%;
+  min-height: 440px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(25, 21, 75, 0.08);
+  background: #eee;
+}
+
+.contact-map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+}
+
+.contact-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #eef0f5;
+  border-radius: 16px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-shadow: 0 8px 32px rgba(25, 21, 75, 0.05);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contact-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2b2481 0%, #4e3fd0 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  box-shadow: 0 4px 12px rgba(43, 36, 129, 0.25);
+}
+
+.contact-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-label {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #19154b;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+.contact-value {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.contact-value a {
+  color: #2b2481;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(43, 36, 129, 0.35);
+  transition: border-color 0.2s;
+}
+
+.contact-value a:hover {
+  border-bottom-color: #2b2481;
+  text-decoration: none;
+}
+
+.contact-kind {
+  display: inline-block;
+  min-width: 72px;
+  font-size: 12px;
+  color: #8a8aa8;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.contact-maps-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 12px 22px;
+  background: #19154b;
+  color: #ffffff !important;
+  text-decoration: none;
+  border-radius: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  align-self: flex-start;
+}
+
+.contact-maps-btn:hover {
+  background: #2b2481;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(25, 21, 75, 0.25);
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.contact-maps-btn i {
+  font-size: 15px;
+}
+
+@media (max-width: 991px) {
+  .contact-heading {
+    margin-bottom: 36px;
+  }
+  .contact-heading h2 {
+    font-size: 32px;
+  }
+  .contact-map-col {
+    margin-bottom: 20px;
+  }
+  .contact-map-wrap,
+  .contact-map-wrap iframe {
+    min-height: 340px;
+  }
+  .contact-card {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-heading h2 {
+    font-size: 26px;
+  }
+  .contact-heading p {
+    font-size: 14px;
+  }
+  .contact-map-wrap,
+  .contact-map-wrap iframe {
+    min-height: 280px;
+  }
+  .contact-card {
+    padding: 24px 20px;
+    gap: 22px;
+  }
+  .contact-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+}
+
+
+/* Prevent merged macro content images from overflowing their containers */
+#macro-scale ~ *, [id^="macro-hero"] {
+  max-width: 100%;
+}
+[id^="macro-hero"] img,
+[id^="macro-hero"] video,
+[id^="macro-hero"] iframe {
+  max-width: 100%;
+  height: auto;
+}
+[id^="macro-hero"] .row,
+[id^="macro-hero"] .container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
+/* Macro-scale merged content: spacing above heading and between blocks */
+a[id="macro-scale"] {
+  display: block;
+  padding-top: 80px;
+}
+[id^="macro-hero"] > section.provider-wrapper {
+  padding-top: 72px !important;
+  padding-bottom: 72px !important;
+}
+@media (max-width: 768px) {
+  a[id="macro-scale"] { padding-top: 48px; }
+  [id^="macro-hero"] > section.provider-wrapper {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+}
