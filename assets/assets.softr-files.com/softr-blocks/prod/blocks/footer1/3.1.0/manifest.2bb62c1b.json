@@ -1,0 +1,27 @@
+{
+    "version": "1.0",
+    "dependencies": [
+        {
+            "name": "react",
+            "version": "18",
+            "variable": "react18"
+        },
+        {
+            "name": "react-dom",
+            "version": "18",
+            "variable": "react_dom18"
+        }
+    ],
+    "styles": [
+        "./main.css?t=1708431416353"
+    ],
+    "scripts": {
+        "vendors": [],
+        "main": "./main.js?t=1708431416353",
+        "type": "var",
+        "export": "default",
+        "name": "renderBlock"
+    },
+    "renderer": "react-18",
+    "hash": "d1fcedcb5766eff23159a40b13f1b1f4"
+}
